@@ -1,3 +1,5 @@
+package main;
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -10,6 +12,10 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
 
+/**
+ *
+ * @author Bartek
+ */
 public class Main extends Application {
 
     Stage window;
@@ -25,7 +31,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         window = primaryStage;
         window.setTitle("Rejestracja");
-
+        
         //Imie Label - constrains use (child, column, row)
         Label nameLabel = new Label("Imię:");
         GridPane.setConstraints(nameLabel, 0, 1);
