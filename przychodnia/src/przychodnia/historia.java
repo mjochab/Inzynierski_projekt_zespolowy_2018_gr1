@@ -18,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -50,12 +51,14 @@ public class historia extends Application  {
     public void start(Stage primaryStage) {
         window = primaryStage;
         window.setTitle("Okno histori choroby");
-                
+   
+
+      
         //Imie column
         TableColumn<Pacjenci, String> nameColumn = new TableColumn<>("Imie");
         nameColumn.setMinWidth(250);
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-
+        
         //nazwisko column
         TableColumn<Pacjenci, String> surnameColumn = new TableColumn<>("Nazwisko");
         surnameColumn.setMinWidth(250);
@@ -82,7 +85,7 @@ public class historia extends Application  {
 
         //Button
         Button addButton = new Button("Wyszukaj");
-        addButton.setOnAction(e -> searchButtonClicked ());
+       // addButton.setOnAction(e -> searchButtonClicked ());
         
 
         HBox hBox = new HBox();
@@ -90,8 +93,8 @@ public class historia extends Application  {
         hBox.setSpacing(10);
         hBox.getChildren().addAll(SearchField, addButton,notkaButton);
 
-        table = new TableView<>();
-        table.setItems(getPacjenci());
+        table = new TableView<Pacjenci>();
+        table.setItems(getPacjenci()); 
         table.getColumns().addAll(nameColumn, surnameColumn);
 
         VBox vBox = new VBox();
@@ -104,13 +107,8 @@ public class historia extends Application  {
 
     //Add button clicked
     public void searchButtonClicked(){
-     /*   opishis opishis1 = new opishis();
-        opishis1.setName(nameInput.getText());
-        opishis1.setSurname(surnameInput.getText());
-        table.getItems().add(opishis1);
-        nameInput.clear();
-        surnameInput.clear();
-        */
+      /* notka notka1 = new notka();
+       notka1.start(window);*/
      //FilteredList<opishis> filteredData = new FilteredList<>(nameColumn,)
      
     }
@@ -122,36 +120,42 @@ public class historia extends Application  {
      
     }
  
-    
+public ObservableList<Pacjenci> getPacjenci(){
+      ObservableList<Pacjenci> pacjenci = FXCollections.observableArrayList();
+      /*   connect_baza conba = new connect_baza();
+          ArrayList<Pacjenci> listpac =conba.connectpac();
+        DefaultTableModel model = (DefaultTableModel) table.getSelectionModel().getSelectedItems();
+       Object[] row = new Object[2];
+       for(int i=0; i<listpac.size();i++){
+        row[0]= listpac.get(i).getName();
+        row[1]= listpac.get(i).getSurname();   
+        model.addRow(row);
+      */
+  pacjenci.add(new Pacjenci("Lydia", "Kunz"));
+  pacjenci.add(new Pacjenci("Lydia1", "Kunz1"));
+  pacjenci.add(new Pacjenci("Lydia2", "Kunz2"));
+
+       
+        
+       return pacjenci;
+        
+
+}
      
-    
-   public ObservableList<Pacjenci> getopishis(){
-      
-     ObservableList<Pacjenci> pacjenci = FXCollections.observableArrayList();
-      
-         pacjenci.add(new Pacjenci("Adam","Kowalski"));
-        pacjenci.add(new Pacjenci("Ewa","Zawilec"));
-        pacjenci.add(new Pacjenci("Hania","Mosteczek"));
-        pacjenci.add(new Pacjenci("Jan","NOwieslki"));
-
-
-        return pacjenci;
-   }
-
-    private void notkaButtonCliked() {
-    /*   choroby choroby1 = new choroby();
-       choroby1.choroby();
-       choroby1.setVisible(true);
-     */  
+   
+   
+       
+    public void notkaButtonCliked() {
+    notka addwp = new notka();
+    addwp.start(window);
+     
     }
     
     public static void main(String[] args) {
         launch(args);
     }
 
-    private ObservableList<Pacjenci> getPacjenci() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 }
 
     

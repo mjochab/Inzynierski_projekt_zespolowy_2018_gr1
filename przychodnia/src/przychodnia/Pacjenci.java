@@ -5,18 +5,23 @@
  */
 package przychodnia;
 
+import javafx.scene.control.TableView;
+
 /**
  *
  * @author Krystian Tracz
  */
 public class Pacjenci {
-   private int id_pacjenta;
+  
+    
+    
+    private int id_pacjenta;
     private String name;
     private String surname;    
     private String PESEL;
     private String e_mail;
     private String haslo;
-    private String notka;
+    private String notatka;
 
 
     public Pacjenci(){
@@ -26,27 +31,31 @@ public class Pacjenci {
         this.PESEL="";
         this.e_mail = "";
         this.haslo = "";
-        this.notka="";
+        this.notatka="";
     }
 
-    public void Pacjenci(int id_pacjenta, String name, String surname, String PESEL, String e_mail, String haslo, String notka){
+    
+
+        
+
+    public  Pacjenci(int id_pacjenta, String name, String surname, String PESEL, String e_mail, String haslo, String notka){
         this.id_pacjenta=id_pacjenta;
         this.name = name;
         this.surname = surname;
         this.PESEL=PESEL;
         this.e_mail = e_mail;
         this.haslo= haslo;   
-        this.notka=notka;
+        this.notatka=notatka;
     }
     public Pacjenci(String name,String surname){
       this.name=name;
       this.surname= surname;
     }
 
-    public int getid_Pacjentaa(){
+    public int getid_Pacjenta(){
      return id_pacjenta;
     }
-    public void setid_Pacjentaint(int id_pacjenta){
+    public void setid_Pacjenta(int id_pacjenta){
      this.id_pacjenta=id_pacjenta;   
     }
     
@@ -85,11 +94,11 @@ public class Pacjenci {
         this.haslo = haslo;
     }
     
-    public String getNotka() {
-        return notka;
+    public String getNotatka() {
+        return notatka;
     } 
-    public void setNotka(String notka) {
-        this.notka = notka;
+    public void setNotatka(String notka) {
+        this.notatka = notka;
     }
      
 }

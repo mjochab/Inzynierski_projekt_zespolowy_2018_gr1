@@ -27,10 +27,7 @@ public class Pracownicy {
         this.e_mail = e_mail;
         this.haslo= haslo;     
     }
-    public Pracownicy(String name,String surname){
-      this.name=name;
-      this.surname= surname;
-    }
+   
 
     public int getid_Lekarza(){
      return id_lekarza;
@@ -73,6 +70,8 @@ public class Pracownicy {
     public void setHaslo(String haslo) {
         this.haslo = haslo;
     }
+
+    
    
  
 }
