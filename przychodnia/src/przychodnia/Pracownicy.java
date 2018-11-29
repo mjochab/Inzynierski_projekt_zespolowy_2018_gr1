@@ -25,7 +25,11 @@ public class Pracownicy {
         this.surname = surname;
         this.function=function;
         this.e_mail = e_mail;
-        this.haslo= haslo;
+        this.haslo= haslo;     
+    }
+    public Pracownicy(String name,String surname){
+      this.name=name;
+      this.surname= surname;
     }
 
     public int getid_Lekarza(){

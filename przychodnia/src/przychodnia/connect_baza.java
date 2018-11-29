@@ -5,8 +5,6 @@ package przychodnia;
  */
 import java.sql.*;
 import java.util.ArrayList;
-import javax.swing.table.DefaultTableModel;
-//import apka_1.connect.dodawanie_prac;
 import javax.swing.JOptionPane;
 
 public class connect_baza {    
@@ -46,7 +44,7 @@ public class connect_baza {
     }
 
        public void SelectPracownicy(){
-        
+       /* 
         ArrayList<Pracownicy> listpr = connect();
        // DefaultTableModel model = (DefaultTableModel) dodawanie_prac.tablework.getModel();
        Object[] row = new Object[6];
@@ -60,6 +58,7 @@ public class connect_baza {
       //  model.addRow(row);
 
        }
+           */
        }
 }
         

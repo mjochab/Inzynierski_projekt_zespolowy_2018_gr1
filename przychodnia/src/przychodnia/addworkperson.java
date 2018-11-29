@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package przychodnia;
 
 import javafx.application.Application;
@@ -7,27 +12,27 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
- 
+
+/**
+ *
+ * @author Krystian Tracz
+ */
 @SuppressWarnings("serial")
-public class addpracownicy extends Application  {   
+
+public class addworkperson  extends Application  {   
     Stage window;
     TableView<Pracownicy> table;
-    TextField nameInput, sernameInput, PESELInput, adresInput, e_mailInput, telefonInput, funkcjaInput;
+    TextField nameInput, sernameInput, functionInput, e_mailInput, hasloInput;
     ComboBox<String> comboBox;
  
-   
-     
- 
-    
+
     public void start(Stage primaryStage)  {
         window = primaryStage;
         window.setTitle("Dodawanie pracowników do bazy");
@@ -75,33 +80,20 @@ public class addpracownicy extends Application  {
         //nazwisko input
         sernameInput = new TextField();
         sernameInput.setPromptText("Nazwisko");
-
-        //PESEL input
-        PESELInput = new TextField();
-        PESELInput.setPromptText("PESEL");
-
-        //adres input
-        adresInput = new TextField();
-        adresInput.setPromptText("Adres");
-
+        
+        //e_mail input
+        functionInput = new TextField();
+        functionInput.setPromptText("Funkcja");
         
         //e_mail input
         e_mailInput = new TextField();
         e_mailInput.setPromptText("E_mail");
+        
+        
+         //e_mail input
+        hasloInput = new TextField();
+        hasloInput.setPromptText("Hasło");
  
-        //telefon input
-        telefonInput = new TextField();
-        telefonInput.setPromptText("Telefon");
-
-        //funkcja input
-        //Plec Label - constrains use (child, column, row)
-        Label plecLabel = new Label("Płeć:");
-        GridPane.setConstraints(plecLabel, 0, 4);
-        comboBox = new ComboBox<>();
-        comboBox.getItems().addAll(
-                "Lekarz ",
-                "Pielęgniarka"
-        );
         //Button
         Button addButton = new Button("Dodaj");
         addButton.setOnAction(e -> addButtonClicked());
@@ -112,11 +104,11 @@ public class addpracownicy extends Application  {
         HBox hBox = new HBox();
         hBox.setPadding(new Insets(20,20,20,20));
         hBox.setSpacing(10);
-        hBox.getChildren().addAll(nameInput, sernameInput, PESELInput, adresInput, e_mailInput, telefonInput,comboBox, addButton, deleteButton);
+        hBox.getChildren().addAll(nameInput, sernameInput, e_mailInput,functionInput,hasloInput,comboBox, addButton, deleteButton);
 
         table = new TableView<>();
         table.setItems(getPracownicy());
-       // table.getColumns().addAll(nameColumn, sernameColumn, PESELColumn, adresColumn,e_mailColumn,telefonColumn,funkcjaColumn);
+      //  table.getColumns().addAll(nameColumn, sernameColumn, PESELColumn, adresColumn,e_mailColumn,telefonColumn,funkcjaColumn);
 
         VBox vBox = new VBox();
         vBox.getChildren().addAll(table, hBox);
@@ -131,55 +123,37 @@ public class addpracownicy extends Application  {
         Pracownicy Pracownicy1 = new Pracownicy();
         Pracownicy1.setName(nameInput.getText());
         Pracownicy1.setSurname(sernameInput.getText());
+        Pracownicy1.setFunction(functionInput.getText());
         Pracownicy1.setE_mail(e_mailInput.getText());
-        Pracownicy1.setFunction(funkcjaInput.getText());
-        
+        Pracownicy1.setHaslo(hasloInput.getText());
 
-     //   table.getItems().add(Pracownicy1);
+
+      //  table.getItems().add(Pracownicy1);
         nameInput.clear();
         sernameInput.clear();
-        PESELInput.clear();
-        adresInput.clear();
         e_mailInput.clear();
-        telefonInput.clear();
-        funkcjaInput.clear();
+        functionInput.clear();
+        hasloInput.clear();
     }
 
     //Delete button clicked
     public void deleteButtonClicked(){
         ObservableList<Pracownicy> PracownicySelected, allPracownicy;
         allPracownicy = table.getItems();
-      //  PracownicySelected = table.getSelectionModel().getSelectedItems();
+     //   PracownicySelected = table.getSelectionModel().getSelectedItems();
 
-      //  PracownicySelected.forEach(allPracownicy::remove);
+       // PracownicySelected.forEach(allPracownicy::remove);
     }
 
-    //Get all of the products
     
     
      
    public ObservableList<Pracownicy> getPracownicy(){
         ObservableList<Pracownicy> Pracownicy1 = FXCollections.observableArrayList();
-     //   Pracownicy1.add(new Pracownicy("Adam","Kowalski",93102598742l,"Zakopianka 65","Akowalski@gmail.com",125698745,"Lekarz gastrolog"));
-      //  Pracownicy1.add(new Pracownicy("Ewa","Zawilec",12569874514l,"Rzeszów, Kwadratowa 65","EwaZawilec@gmail.com",171415196,"Stomatolog"));
-
+      /*  Pracownicy1.add(new Pracownicy("Adam","Kowalski",93102598742l,"Zakopianka 65","Akowalski@gmail.com",125698745,"Lekarz gastrolog"));
+        Pracownicy1.add(new Pracownicy("Ewa","Zawilec",12569874514l,"Rzeszów, Kwadratowa 65","EwaZawilec@gmail.com",171415196,"Stomatolog"));
+*/
         return Pracownicy1;
     }
-     public static void main(String[] args) {
-        launch(args);
-    }
+
 }
-
-    
-        
-      
-
-        
-    
-
-
-   
- 
-         
-        
-    
