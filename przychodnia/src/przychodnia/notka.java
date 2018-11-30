@@ -10,7 +10,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
+import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 /**
@@ -18,25 +20,21 @@ import javafx.stage.Stage;
  * @author Krystian Tracz
  */
 public class notka extends Application {
-    
+
     @Override
     public void start(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });
-        
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        
-        Scene scene = new Scene(root, 300, 250);
-        
-        primaryStage.setTitle("Hello World!");
+        primaryStage.setTitle("");
+
+        TextArea textArea = new TextArea();
+       textArea.setMinSize(600, 600);
+        MenuBar menuBar = new MenuBar();
+        Menu menu1 = new Menu("Menu 1");
+        menuBar.getMenus().add(menu1);
+       menu1.setGraphic(new ImageView(""));
+        VBox vbox = new VBox(menuBar);
+
+        Scene scene = new Scene(vbox, 500, 600);
+
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -44,8 +42,4 @@ public class notka extends Application {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        launch(args);
-    }
-    
 }

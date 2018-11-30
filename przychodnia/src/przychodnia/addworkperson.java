@@ -144,11 +144,11 @@ public class addworkperson extends Application {
     }
 
     public ObservableList<Pracownicy> getPracownicy() {
-        ObservableList<Pracownicy> Pracownicy1 = FXCollections.observableArrayList();
-       Pracownicy1.add(new Pracownicy(1, "Adam", "Kowalski", "Akowalski@gmail.com", "Lekarz gastrolog", "admin123"));
-        Pracownicy1.add(new Pracownicy(2, "Ewa", "Zawilec", "EwaZawilec@gmail.com", "Stomatolog", "Admin12"));
+        ObservableList<Pracownicy> Pracownicy2 = FXCollections.observableArrayList();
+       Pracownicy2.add(new Pracownicy(1, "Adam", "Kowalski", "Akowalski@gmail.com", "Lekarz gastrolog", "admin123"));
+        Pracownicy2.add(new Pracownicy(2, "Ewa", "Zawilec", "EwaZawilec@gmail.com", "Stomatolog", "Admin12"));
 
-        return Pracownicy1;
+        return Pracownicy2;
     }
 
     public static void main(String[] args) {

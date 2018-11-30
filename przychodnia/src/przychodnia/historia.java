@@ -107,8 +107,8 @@ public class historia extends Application  {
 
     //Add button clicked
     public void searchButtonClicked(){
-      /* notka notka1 = new notka();
-       notka1.start(window);*/
+   //   notka notka1 = new notka();
+     //  notka1.start(window);
      //FilteredList<opishis> filteredData = new FilteredList<>(nameColumn,)
      
     }
