@@ -1,6 +1,6 @@
 package przychodnia;
 
-public class Pracownicy {
+public class Lekarze {
     private int id_lekarza;
     private String name;
     private String surname;    
@@ -9,7 +9,7 @@ public class Pracownicy {
     private String haslo;
 
 
-    public Pracownicy(){
+    public Lekarze(){
         this.id_lekarza=0;
         this.name = "";
         this.surname ="";
@@ -19,11 +19,11 @@ public class Pracownicy {
         
     }
 
-    public Pracownicy(int id_lekarza, String name, String surname, String funkcja, String e_mail, String haslo){
+    public Lekarze(int id_lekarza, String name, String surname, String function, String e_mail, String haslo){
         this.id_lekarza=id_lekarza;
         this.name = name;
         this.surname = surname;
-        this.function=function;
+        this.function= function;
         this.e_mail = e_mail;
         this.haslo= haslo;     
     }
@@ -71,7 +71,8 @@ public class Pracownicy {
         this.haslo = haslo;
     }
 
+    }
+
     
    
  
-}

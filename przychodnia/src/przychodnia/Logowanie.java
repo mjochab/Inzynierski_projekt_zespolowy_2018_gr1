@@ -1,16 +1,14 @@
 package przychodnia;
 
 import javafx.application.Application;
+import javafx.event.*;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
+import javafx.event.*;
+import javafx.scene.control.Alert.*;
 
 /**
  *
@@ -27,16 +25,19 @@ public class Logowanie extends Application {
         launch(args);
     }
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         window = primaryStage;
         window.setTitle("Logowanie");
        
-        //nrP Label - constrains use (child, column, row)
+        //nrP Label 
         Label nrPLabel = new Label("PESEL:");
         GridPane.setConstraints(nrPLabel, 0, 1);
+        
 
         //nrP Input
         TextField nrPInput = new TextField();
+            
+
         GridPane.setConstraints(nrPInput, 1, 1);
 
         //Password Label
@@ -50,10 +51,25 @@ public class Logowanie extends Application {
 
         //button
         Button button = new Button("Zaloguj się");
+  
+
+     
+                
         GridPane.setConstraints(button, 1, 3);
 
         Label logLabel = new Label("Nie masz konta?");
         Hyperlink hyperlink = new Hyperlink("Zarejestruj się!");
+        hyperlink.setOnAction(new EventHandler<ActionEvent>(){
+          @Override
+          
+          public void handle(ActionEvent e) { 
+         Rejestracja rej = new Rejestracja();
+         rej.start(window);
+                    
+        }                
+        });
+
+               
         GridPane.setConstraints(logLabel, 0, 4);
         GridPane.setConstraints(hyperlink, 1, 4);
 
@@ -71,5 +87,7 @@ public class Logowanie extends Application {
     }
     private void printMovie(){
         System.out.println(comboBox.getValue());
-    }    
+    }
+    
 }
+

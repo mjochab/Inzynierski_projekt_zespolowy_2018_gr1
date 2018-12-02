@@ -1,6 +1,7 @@
 package przychodnia;
 
 import javafx.application.Application;
+import javafx.event.*;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -23,11 +24,9 @@ public class Rejestracja extends Application {
     Button button;
     ComboBox<String> comboBox;
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+   
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage)  {
         window = primaryStage;
         window.setTitle("Rejestracja");
         
@@ -119,6 +118,14 @@ public class Rejestracja extends Application {
 
         Label logLabel = new Label("Masz już konto?");
         Hyperlink hyperlink = new Hyperlink("Zaloguj się!");
+         hyperlink.setOnAction(new EventHandler<ActionEvent>(){
+          @Override
+                public void handle(ActionEvent e) { 
+         Logowanie rej = new Logowanie();
+         rej.start(window);
+                    
+        }                
+        });
         GridPane.setConstraints(logLabel, 0, 11);
         GridPane.setConstraints(hyperlink, 1, 11);
 

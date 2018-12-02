@@ -9,9 +9,6 @@ import javax.swing.JOptionPane;
 
 public class connect_baza {    
  
- private Connection conn;
- private Statement prepStmt;
- private ResultSet rs;
 
        
 		   
@@ -20,50 +17,27 @@ public class connect_baza {
      * @return 
      * @throws java.sql.SQLException
      */
-     public ArrayList<Pracownicy> connectlek(){
-    ArrayList<Pracownicy> workList = new ArrayList<>();		   
-           try
-           {
-               Class.forName ("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection( "jdbc:mysql://localhost:3306/przuchodnia" ,"root", "");
-          prepStmt = conn.createStatement();       
-          String query1 = "Select * from lekarze";               
-          rs =  prepStmt.executeQuery(query1);
-            Pracownicy pracownik;
-            while (rs.next()) {
-               pracownik = new Pracownicy(rs.getInt("id_lekarza"), rs.getString("imie"), rs.getString("nazwisko"), rs.getString("specjalność"), rs.getString("email"), rs.getString("hasło"));
-               workList.add(pracownik);
-            }
-      JOptionPane.showMessageDialog(null, "Połączyłeś się z bazą");
-            }
-        catch (Exception ex)
-        {
-            JOptionPane.showMessageDialog(null, "Nie połączyłeś się z bazą"+ex);
-        }
-        return workList;
-    }
+ 
+    private static String driverName = "com.mysql.jdbc.Driver";
+    private static String username = "root";
+    private static String password = "";
+    private static Connection myConn;
+//
 
-       public ArrayList<Pacjenci> connectpac(){
-    ArrayList<Pacjenci> personList = new ArrayList<>();		   
-           try
-           {
-               Class.forName ("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection( "jdbc:mysql://localhost:3306/przuchodnia" ,"root", "");
-          prepStmt = conn.createStatement();       
-          String query1 = "Select * from pacjenci";               
-          rs =  prepStmt.executeQuery(query1);
-            Pacjenci pacjenci;
-            while (rs.next()) {
-               pacjenci = new Pacjenci(rs.getInt("id_pacjenta"), rs.getString("imie"), rs.getString("nazwisko"), rs.getString("PESEL"), rs.getString("email"), rs.getString("hasło"), rs.getString("notatka"));
-               personList.add(pacjenci);
+    public static Connection getConnection() {
+        try {
+            Class.forName(driverName);
+            try {
+                myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/przuchodnia", "root", "");
+            } catch (SQLException ex) {
+                // log an exception. fro example:
+                System.out.println("Failed to create the database connection.");
             }
-      JOptionPane.showMessageDialog(null, "Połączyłeś się z bazą");
-            }
-        catch (Exception ex)
-        {
-            JOptionPane.showMessageDialog(null, "Nie połączyłeś się z bazą"+ex);
+        } catch (ClassNotFoundException ex) {
+            // log an exception. for example:
+            System.out.println(ex.getMessage());
         }
-        return personList;
+        return myConn;
     }
 }
         

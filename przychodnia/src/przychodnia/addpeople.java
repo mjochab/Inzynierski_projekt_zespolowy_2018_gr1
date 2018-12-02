@@ -21,12 +21,13 @@ import javafx.stage.Stage;
 @SuppressWarnings("serial")
 public class addpeople extends Application  {   
     Stage window;
-    TableView<Pracownicy> table;
+    TableView<Lekarze> table;
  
    
      
  
 
+    @Override
     public void start(Stage primaryStage) {
         window = primaryStage;
         window.setTitle("Dodawanie pracowników do bazy");
@@ -35,7 +36,7 @@ public class addpeople extends Application  {
         //Button
         
         Button addButton = new Button("Lekarz");
-        addButton.setOnAction(e -> addButtonClicked());
+       //addButton.setOnAction(e -> addButtonClicked());
         
         Button deleteButton = new Button("Pilęgniarka");
         deleteButton.setOnAction(e -> deleteButtonClicked());
@@ -56,7 +57,7 @@ public class addpeople extends Application  {
 
     //Add button clicked
     public void addButtonClicked(){
-    addworkperson addprac = new addworkperson();
+    addworkpearson addprac = new addworkpearson();
     addprac.start(window);
   
         

@@ -47,9 +47,16 @@ public class Pacjenci {
         this.haslo= haslo;   
         this.notatka=notatka;
     }
-    public Pacjenci(String name,String surname){
+    
+    public Pacjenci(String name,String surname ){
       this.name=name;
       this.surname= surname;
+    }
+      
+    public Pacjenci(String name,String surname, int PESEL){
+      this.name=name;
+      this.surname= surname;
+      this.PESEL=null;
     }
 
     public int getid_Pacjenta(){
