@@ -12,8 +12,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -58,7 +60,6 @@ public class addworkpearson extends Application{
 
                 tableview.getColumns().addAll(col); 
 
-                
                 System.out.println("Column ["+i+"] ");
             }
 
@@ -72,6 +73,7 @@ public class addworkpearson extends Application{
                 }
                 System.out.println("Row [1] added "+row );
                 data.add(row);
+                
                 
                 
                 
@@ -95,7 +97,6 @@ public class addworkpearson extends Application{
         //TableView
         tableview = new TableView();
         tableview.setMaxSize(500, 470);
-        tableview.setOnMouseClicked(e -> NotkaButtonClicked());
         buildData();
 
         //Main Scene
@@ -126,38 +127,40 @@ public class addworkpearson extends Application{
 
         //Button
         Button addButton = new Button("Dodaj");
-       // addButton.setOnAction(e -> addButtonClicked());
+       addButton.setOnAction(e -> addButtonClicked());
 
         Button deleteButton = new Button("Usuń");
-       // deleteButton.setOnAction(e -> deleteButtonClicked());;
+       deleteButton.setOnAction(e -> deleteButtonClicked());;
         HBox hBox = new HBox();
         hBox.setPadding(new Insets(20, 20, 20, 20));
         hBox.setSpacing(10);
-         hBox.getChildren().addAll(hasloInput,IDInput, nameInput, sernameInput, functionInput, e_mailInput, addButton, deleteButton);
+         hBox.getChildren().addAll(IDInput, nameInput, sernameInput, functionInput, e_mailInput,hasloInput, addButton, deleteButton);
        
         
         //Main Scene
         VBox vBox = new VBox();
+        vBox.setStyle("-fx-background-color: #CCFFFF ");
         vBox.getChildren().addAll(tableview,hBox); 
         
-        
-                Scene scene = new Scene(vBox);        
-
-        
-        
-        
-        
-        
+        Scene scene = new Scene(vBox);        
         window.setScene(scene);
         window.show();
-        
-        
-        
+      
       }
 
     private void NotkaButtonClicked() {
 notka noteczka = new notka();
 noteczka.start(window);
+    }
+
+    private void addButtonClicked() {
+tableview.getItems().addAll(tableview.getSelectionModel().getSelectedItem());
+
+    }
+
+    private void deleteButtonClicked() {
+        tableview.getItems().removeAll(tableview.getSelectionModel().getSelectedItem());
+
     }
       
       

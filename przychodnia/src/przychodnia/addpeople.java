@@ -48,6 +48,7 @@ public class addpeople extends Application  {
 
        
         VBox vBox = new VBox();
+        vBox.setStyle("-fx-background-color: #CCFFFF ");
         vBox.getChildren().addAll(hBox);
 
         Scene scene = new Scene(vBox);

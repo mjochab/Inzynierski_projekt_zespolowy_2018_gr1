@@ -30,11 +30,9 @@ public class connect_baza {
             try {
                 myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/przuchodnia", "root", "");
             } catch (SQLException ex) {
-                // log an exception. fro example:
                 System.out.println("Failed to create the database connection.");
             }
         } catch (ClassNotFoundException ex) {
-            // log an exception. for example:
             System.out.println(ex.getMessage());
         }
         return myConn;

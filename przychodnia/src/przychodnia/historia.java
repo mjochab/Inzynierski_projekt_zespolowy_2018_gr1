@@ -24,9 +24,9 @@ public class historia extends Application{
     //Ttabela i dane
     private ObservableList<ObservableList> data;
     private TableView tableview;
-    TextField  hasloInput;
-    Stage window;
-
+            Button addButon;
+            Stage window;
+            TextField notkatext; 
     //MAIN EXECUTOR
     public static void main(String[] args) {
         launch(args);
@@ -38,7 +38,7 @@ public class historia extends Application{
           data = FXCollections.observableArrayList();
           try{
             c = connect_baza.getConnection();
-            //SQL FOR SELECTING ALL OF CUSTOMER
+            //SQL FOR SELECTING 
             String SQL = "SELECT * from pacjenci";
             //ResultSet
             ResultSet rs = c.createStatement().executeQuery(SQL);
@@ -89,29 +89,36 @@ public class historia extends Application{
       public  void start(Stage primaryStage)
 {  
         window = primaryStage;
-        window.setTitle("Dodawanie lekarzy do bazy");
+        window.setTitle("historia ");
 
-        TableView
-       tableview = new TableView();
+       // TableView
+      tableview = new TableView();
+      tableview.setMaxSize(500, 470);
+        tableview.setOnMouseClicked(e -> NotkaButtonClicked());
+
             //haslo input
-        hasloInput = new TextField();
-        hasloInput.setPromptText("Hasło");
+       notkatext = new TextField("");
+        notkatext.setPromptText("notka tekst");
         
-        
+       
         HBox hBox = new HBox();
-       // hBox.setPadding(new Insets());
+        hBox.setPadding(new Insets(20, 20, 20, 20));
         hBox.setSpacing(10);
-        hBox.getChildren().addAll(tableview);
+         hBox.getChildren().addAll(notkatext ,tableview);
+       
         
         //Main Scene
         VBox vBox = new VBox();
+        vBox.setStyle("-fx-background-color: #CCFFFF ");
         vBox.getChildren().addAll(hBox); 
-        
-        Scene scene = new Scene(vBox);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-        
-        
+      Scene scene = new Scene(vBox);        
+
+        window.setScene(scene);
+        window.show(); 
         
       }
+        private void NotkaButtonClicked() {
+notka noteczka = new notka();
+noteczka.start(window);
+    }
 }
