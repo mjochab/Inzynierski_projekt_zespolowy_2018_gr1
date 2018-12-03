@@ -11,6 +11,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
@@ -24,11 +25,18 @@ public class Rejestracja extends Application {
     Button button;
     ComboBox<String> comboBox;
 
+    public static void main(String[] args) {
+        launch(args);
+    }
    
     @Override
     public void start(Stage primaryStage)  {
         window = primaryStage;
         window.setTitle("Rejestracja");
+        
+        Label napis = new Label("➕ Przychodnia 🚑");
+        napis.setFont(Font.font (20));
+        GridPane.setConstraints(napis, 1, 0);
         
         //Imie Label - constrains use (child, column, row)
         Label nameLabel = new Label("Imię:");
@@ -37,7 +45,7 @@ public class Rejestracja extends Application {
         //Imie Input
         TextField nameInput = new TextField();
         GridPane.setConstraints(nameInput, 1, 1);
-        
+                
         //Nazwisko Label - constrains use (child, column, row)
         Label nazwiskoLabel = new Label("Nazwisko:");
         GridPane.setConstraints(nazwiskoLabel, 0, 2);
@@ -131,15 +139,15 @@ public class Rejestracja extends Application {
 
         //GridPane with 10px padding around edge
         GridPane grid = new GridPane();
-        grid.setPadding(new Insets(10, 10, 10, 25));
+        grid.setPadding(new Insets(10, 10, 10, 20));
         grid.setVgap(8);
         grid.setHgap(10);
         
-        grid.getChildren().addAll(nameLabel, nameInput, nazwiskoLabel, nazwiskoInput, nrPLabel, nrPInput, plecLabel, 
+        grid.getChildren().addAll(napis, nameLabel, nameInput,/* blad, */nazwiskoLabel, nazwiskoInput, nrPLabel, nrPInput, plecLabel, 
                 comboBox, telLabel, telInput, adresLabel, adresInput, mailLabel, mailInput, passLabel, passInput, passwordLabel, passwordInput, 
                 button, logLabel, hyperlink);
                 
-        scene = new Scene(grid, 300, 400);
+        scene = new Scene(grid, 375, 420);
         window.setScene(scene);
         window.show();
     }
