@@ -132,7 +132,7 @@ public class Recepty extends Application {
     public ObservableList<Product> getProduct(){
         ObservableList<Product> products = FXCollections.observableArrayList();
         products.add(new Product("Jan", "Kowalski", "Njfofjo", 859.00, 78));
-        products.add(new Product("Jacek", "Nowak", "Tdaflaj", 432.00, 42));
+        products.add(new Product("Jacek", "Nowak", "Tdbflaj", 432.00, 42));
         return products;
     }
 
