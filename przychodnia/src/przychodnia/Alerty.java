@@ -38,18 +38,19 @@ public class Alerty extends Application {
         //blad
         Label napis = new Label("Błąd");
         napis.setFont(Font.font (20));
-        GridPane.setConstraints(napis, 0, 1);
+        GridPane.setConstraints(napis, 1, 0);
         
-        Label blad = new Label("Nieprawidłowy login lub hasło.\n Popraw błędy i sprubuj ponownie");
-        GridPane.setConstraints(blad, 0, 2);
+        Label blad = new Label("Nieprawidłowy login lub hasło.\nPopraw błędy i spróbuj ponownie");
+        GridPane.setConstraints(blad, 1, 1);
         
-        /*FileInputStream input = new FileInputStream("img\blad.png");
-        Image image = new Image(input);
-        ImageView imageView = new ImageView(image);*/
+        /* znak = new FileInputStream("img/blad.png");
+        Image image = new Image(znak);
+        ImageView imageView = new ImageView(image);
+        GridPane.setConstraints(znak, 1, 0);*/
         
         //button
-        Button button = new Button("Ok"); 
-        GridPane.setConstraints(button, 1, 3);
+        Button button = new Button("     Ok     "); 
+        GridPane.setConstraints(button, 1, 2);
 
         //GridPane with 10px padding around edge
         GridPane grid = new GridPane();
@@ -57,9 +58,9 @@ public class Alerty extends Application {
         grid.setVgap(8);
         grid.setHgap(10);
                 
-        grid.getChildren().addAll(napis, blad, button);
+        grid.getChildren().addAll(/*znak, */napis, blad, button);
         
-        scene = new Scene(grid, 350, 180);
+        scene = new Scene(grid, 300, 130);
         window.setScene(scene);
         window.show();
     }
