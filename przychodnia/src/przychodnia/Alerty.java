@@ -59,7 +59,7 @@ public class Alerty extends Application {
         grid.setVgap(8);
         grid.setHgap(10);
                 
-        grid.getChildren().addAll(label, napis, blad, button);
+        grid.getChildren().addAll(/*label, */napis, blad, button);
         
         scene = new Scene(grid, 350, 180);
         window.setScene(scene);
