@@ -43,11 +43,11 @@ public class Alerty extends Application {
         Label blad = new Label("Nieprawidłowy login lub hasło.\nPopraw błędy i spróbuj ponownie");
         GridPane.setConstraints(blad, 1, 2);
         
-        FileInputStream znak = new FileInputStream("img/blad.png");
+        /*FileInputStream znak = new FileInputStream("img/blad.png");
         Image image = new Image(znak);
         ImageView imageView = new ImageView(image);
         Label label = new Label("Znak", imageView);
-        GridPane.setConstraints(label, 1, 0);
+        GridPane.setConstraints(label, 1, 0);*/
         
         //button
         Button button = new Button("Ok"); 
@@ -59,7 +59,7 @@ public class Alerty extends Application {
         grid.setVgap(8);
         grid.setHgap(10);
                 
-        grid.getChildren().addAll(label, napis, blad, button);
+        grid.getChildren().addAll(/*label, */napis, blad, button);
         
         scene = new Scene(grid, 350, 180);
         window.setScene(scene);
