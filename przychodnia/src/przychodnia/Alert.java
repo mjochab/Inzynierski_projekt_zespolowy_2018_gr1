@@ -20,7 +20,7 @@ import javafx.scene.text.Font;
  *
  * @author Bartek
  */
-public class Alerty extends Application {
+public class Alert extends Application {
 
     Stage window;
     Scene scene;
@@ -33,14 +33,14 @@ public class Alerty extends Application {
     @Override
     public void start(Stage primaryStage) throws FileNotFoundException {
         window = primaryStage;
-        window.setTitle("Alert logowania");
+        window.setTitle("Alert rejestracji");
        
         //blad
         Label napis = new Label("Błąd 🛠");
         napis.setFont(Font.font (20));
         GridPane.setConstraints(napis, 1, 1);
         
-        Label blad = new Label("Nieprawidłowy PESEL lub hasło.\nPopraw błędy i spróbuj ponownie. 🔄");
+        Label blad = new Label("Nieprawidłowe dane rejestracji.\nPopraw błędy i spróbuj ponownie. 🔄");
         GridPane.setConstraints(blad, 1, 2);
         
         /*FileInputStream znak = new FileInputStream("img/blad.png");
