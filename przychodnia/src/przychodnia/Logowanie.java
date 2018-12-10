@@ -126,7 +126,7 @@ public class Logowanie extends Application {
         @Override 
         public void handle(ActionEvent e) {
          if (!nrPLabel.getText().equals(data)) {
-        //  message.setText("Twoje hało lub PESEL jest niepoprawne ");
+        // message.setText("Twoje hało lub PESEL jest niepoprawne ");
           //message.setTextFill(Color.web("red")); 
           Alerty alt = new Alerty();
           alt.start(window);
