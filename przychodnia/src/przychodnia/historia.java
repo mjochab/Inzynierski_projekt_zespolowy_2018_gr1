@@ -93,9 +93,9 @@ public class historia extends Application{
 
        // TableView
       tableview = new TableView();
-      tableview.setMaxSize(500, 470);
+    //  tableview.setMaxSize(700, 570);
         tableview.setOnMouseClicked(e -> NotkaButtonClicked());
-
+buildData();
             //haslo input
        notkatext = new TextField("");
         notkatext.setPromptText("notka tekst");

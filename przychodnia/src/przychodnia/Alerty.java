@@ -27,11 +27,9 @@ public class Alerty extends Application {
     Button button;
     ComboBox<String> comboBox;
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+   
     @Override
-    public void start(Stage primaryStage) throws FileNotFoundException {
+    public void start(Stage primaryStage)  {
         window = primaryStage;
         window.setTitle("Alert logowania");
        
@@ -51,6 +49,13 @@ public class Alerty extends Application {
         
         //button
         Button button = new Button("     Ok     "); 
+        button.setOnAction(new EventHandler<ActionEvent>(){
+        @Override 
+        public void handle(ActionEvent e) {
+        Logowanie log = new Logowanie();
+        log.start(window);
+    }
+        });
         GridPane.setConstraints(button, 1, 3);
 
         //GridPane with 10px padding around edge

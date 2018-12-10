@@ -19,9 +19,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
  
 @SuppressWarnings("serial")
-public class addpeople extends Application  {   
+public class Selectlogin extends Application  {   
     Stage window;
-    TableView<Lekarze> table;
  
    
      
@@ -33,51 +32,33 @@ public class addpeople extends Application  {
         window.setTitle("Dodawanie pracowników do bazy");
 
         
-        //Button
-        
-        Button addButton = new Button("Lekarz");
-      addButton.setOnAction(e -> addButtonClicked());
-        
-        Button deleteButton = new Button("Pilęgniarka");
-      //  deleteButton.setOnAction(e -> deleteButtonClicked());
+       ;
 
         HBox hBox = new HBox();
         hBox.setPadding(new Insets(30,30,30,30));
         hBox.setSpacing(10);
-        hBox.getChildren().addAll( addButton, deleteButton);
+        hBox.getChildren().addAll();
 
        
         VBox vBox = new VBox();
-        vBox.setStyle("-fx-background-color: #CCFFFF ");
         vBox.getChildren().addAll(hBox);
 
-        Scene scene = new Scene(vBox);
+        Scene scene = new Scene(vBox,400,500);
         window.setScene(scene);
         window.show();
     }
+    
+    
 
-    //Add button clicked
-    public void addButtonClicked(){
-    addworkpearson addprac = new addworkpearson();
-    addprac.start(window);
-  
-        
+      
+    
 
-       
-    }
-
-    //Delete button clicked
-    public void deleteButtonClicked(){
+    
+    
       
     }
-
-    
-    
-      public static void main(String[] args) {
-        launch(args);
-    }
   
-}
+
 
     
         

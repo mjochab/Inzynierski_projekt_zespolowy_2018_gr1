@@ -38,7 +38,7 @@ public class notka extends Application {
           try{
             c = connect_baza.getConnection();
             //SQL FOR SELECTING ALL OF CUSTOMER
-            String SQL = "SELECT  name, surname, PESEL FROM pacjenci ";
+            String SQL = "SELECT imie, nazwisko, PESEL FROM pacjenci ";
             //ResultSet
             ResultSet rs = c.createStatement().executeQuery(SQL);
 
@@ -106,9 +106,8 @@ public class notka extends Application {
         PESELColumn.setMinWidth(100);
         PESELColumn.setCellValueFactory(new PropertyValueFactory<>("PESEL"));
       
-        tableview = new TableView<>();
-       // tableview.setItems(getPacjenci());
-        tableview.getColumns().addAll(nameColumn, surnameColumn, PESELColumn);
+        tableview = new TableView();
+       buildData();
           VBox vbox = new VBox();
           vbox.getChildren().addAll(tableview,textArea);
 
@@ -117,13 +116,7 @@ public class notka extends Application {
         window.setScene(scene);
         window.show();
     }
-    /*
-    public ObservableList<Pacjenci> getPacjenci(){
-        ObservableList<Pacjenci> pacjenci = FXCollections.observableArrayList();
-        pacjenci.add(new Pacjenci("Adam","John",1254784512));
-       
-        return pacjenci;
-*/
+   
    
 }
 
