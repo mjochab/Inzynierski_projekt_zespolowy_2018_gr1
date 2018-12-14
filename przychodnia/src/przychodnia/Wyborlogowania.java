@@ -39,29 +39,29 @@ public class Wyborlogowania extends Application {
         window = primaryStage;
         window.setTitle("Logowanie");
 
-        MenuItem menuItem1 = new MenuItem("Lekarz");
+        /*MenuItem menuItem1 = new MenuItem("Lekarz");
         menuItem1.setOnAction(e -> LekarzSelect());
 
         MenuItem menuItem2 = new MenuItem("Pacjent");
         menuItem2.setOnAction(e -> PacjentSelect());
 
         MenuItem menuItem3 = new MenuItem("Administartor");
-        menuItem3.setOnAction(e -> AdminSelect());
+        menuItem3.setOnAction(e -> AdminSelect());*/
 
-        MenuButton menuButton = new MenuButton("             Zaloguj się jako            ", null, menuItem1, menuItem2, menuItem3);
-        GridPane.setConstraints(menuButton, 2, 3);
+        MenuButton menuButton = new MenuButton("             Zaloguj się jako            ", null/*, menuItem1, menuItem2, menuItem3*/);
+        GridPane.setConstraints(menuButton, 1, 3);
 
         //napis 
         Label napis = new Label("➕ Przychodnia 🚑");
         napis.setFont(Font.font(25));
-        GridPane.setConstraints(napis, 2, 2);
+        GridPane.setConstraints(napis, 1, 1);
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(10, 10, 10, 10));
         grid.setVgap(8);
         grid.setHgap(10);
 
         Label logLabel = new Label("Nie masz konta?");
-        Hyperlink hyperlink = new Hyperlink("Zarejestruj się!");
+        Hyperlink hyperlink = new Hyperlink("                                    Zarejestruj się!");
         hyperlink.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -70,11 +70,11 @@ public class Wyborlogowania extends Application {
             }
         });
 
-        GridPane.setConstraints(logLabel, 2, 4);
-        GridPane.setConstraints(hyperlink, 2, 5);
+        GridPane.setConstraints(logLabel, 1, 4);
+        GridPane.setConstraints(hyperlink, 1, 4);
 
         grid.getChildren().addAll(menuButton, napis, logLabel, hyperlink);
-        scene = new Scene(grid, 250, 180);
+        scene = new Scene(grid, 250, 150);
         window.setScene(scene);
         window.show();
     }
@@ -83,7 +83,7 @@ public class Wyborlogowania extends Application {
         System.out.println(comboBox.getValue());
     }
 
-    private void AdminSelect() {
+    /*private void AdminSelect() {
         Logowanieadmina logad = new Logowanieadmina();
         logad.start(window);
     }
@@ -96,6 +96,6 @@ public class Wyborlogowania extends Application {
     private void LekarzSelect() {
         Logowanielekarza loglek = new Logowanielekarza();
         loglek.start(window);
-    }
+    }*/
 
 }
