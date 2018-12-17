@@ -125,6 +125,7 @@ public class Logowanielekarza extends Application {
 
         grid.getChildren().addAll(napis, nrPLabel, nrPInput, passLabel, passInput, button, logLabel, hyperlink, back);
         scene = new Scene(grid, 350, 220);
+        
         window.setScene(scene);
         window.show();
     }

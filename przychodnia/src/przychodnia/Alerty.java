@@ -54,8 +54,8 @@ public class Alerty extends Application {
         button.setOnAction(new EventHandler<ActionEvent>(){
         @Override 
         public void handle(ActionEvent e) {
-        Logowaniepacjentow log = new Logowaniepacjentow();
-        log.start(window);
+        Wyborlogowania wyblog =new Wyborlogowania();
+        wyblog.start(window);
     }
         });
         GridPane.setConstraints(button, 1, 3);

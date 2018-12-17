@@ -3,6 +3,9 @@ package przychodnia;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
@@ -15,6 +18,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.text.Font;
+import static javax.xml.bind.DatatypeConverter.parseString;
 
 /**
  *
@@ -68,46 +72,26 @@ public class Logowanieadmina extends Application {
 
         //button
         Button button = new Button("Zaloguj się");
-        button.setOnAction(new EventHandler<ActionEvent>() {
+        button.setOnAction(e -> {
 
-            public void handle(ActionEvent event) {
-              /*  try {
-                    conn = connect_baza.getConnection();
-                    String query = "select from pacjenci where PESEL=? and hasło=?";
-                    pst = conn.prepareStatement(query);
-                    pst.setInt(1, Integer.parseInt(nrPInput.getText()));
-                    pst.setString(2, passInput.getText());
-                    rs = pst.executeQuery();
+            try {
+                pst = connect_baza.getConnection().prepareStatement("select* from admin where login=? and haslo=?");
 
-                    if (rs.next()) {
-                        System.out.println("good");
-                    } else {
-
-                        System.out.println("bad");
-
-                    }
-
-                    pst.close();
-                    rs.close();
-                } catch (Exception e1) {
-                    System.out.println("BYYYYYKK sql" + e1);
-                }
-
-                /* 
-                checkPESEL = nrPInput.getText().toString();
-                checkPw = passInput.getText().toString();
-                if (checkPESEL.equals("") && checkPw.equals("")) {
-                addpeople addp = new addpeople();
-                addp.start(window);
-                    
-                    
+                pst.setString(1, parseString(nrPInput.getText()));
+                pst.setString(2, parseString(passInput.getText()));
+                rs = pst.executeQuery();
+                if (rs.next()) {
+                    addpeople addp = new addpeople();
+                    addp.start(primaryStage);
                 } else {
-                  Alerty alt = new Alerty();
-                  alt.start(window);   
+                    Alerty alt = new Alerty();
+                    alt.start(window);
                 }
-                 */
-              addpeople addp = new addpeople();
-                addp.start(window);
+                pst.close();
+                rs.close();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Logowaniepacjentow.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
 

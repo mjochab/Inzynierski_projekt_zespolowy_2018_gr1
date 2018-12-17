@@ -1,5 +1,11 @@
 package przychodnia;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.event.*;
 import javafx.geometry.Insets;
@@ -13,21 +19,21 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import static javax.xml.bind.DatatypeConverter.parseString;
 
 /**
  *
  * @author Bartek
  */
 public class Rejestracja extends Application {
-
+Connection conn;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
     Stage window;
     Scene scene;
     Button button;
     ComboBox<String> comboBox;
 
-    public static void main(String[] args) {
-        launch(args);
-    }
    
     @Override
     public void start(Stage primaryStage)  {
@@ -106,6 +112,39 @@ public class Rejestracja extends Application {
 
         //button
         Button button = new Button("Załóż konto");
+         button.setOnAction(new EventHandler<ActionEvent>(){
+          @Override
+                public void handle(ActionEvent e) { 
+         try {
+            pst = connect_baza.getConnection().prepareStatement("INSERT INTO pacjenci (imie, nazwisko, PESEL, adres, email, haslo) VALUES (?,?,?,?,?,?)");
+                pst.setString(1, parseString(nameInput.getText()));
+                pst.setString(2, parseString(nazwiskoInput.getText()));
+                pst.setString(3, parseString(nrPInput.getText()));
+             //   pst.setString(4 parseString,adresInput.getText());
+                pst.setString(5, mailInput.getText());
+                pst.setString(6, passInput.getText());
+                pst.execute();
+                    System.out.println("good");
+/*
+                if (rs.next()) {
+                    wizyty wiz = new wizyty();
+                    wiz.start(primaryStage);
+                } else {
+                    Alert alt = new Alert();
+                    alt.start(window);
+                }
+                pst.close();
+                rs.close();
+*/
+            } catch (SQLException ex) {
+                System.out.println("bład");
+            }
+                }
+        });
+        
+        
+        
+        
         GridPane.setConstraints(button, 1, 10);
 
         //Plec Label - constrains use (child, column, row)
@@ -129,8 +168,8 @@ public class Rejestracja extends Application {
          hyperlink.setOnAction(new EventHandler<ActionEvent>(){
           @Override
                 public void handle(ActionEvent e) { 
-         Logowanie rej = new Logowanie();
-         rej.start(window);
+         Wyborlogowania wyrej = new Wyborlogowania();
+         wyrej.start(window);
                     
         }                
         });

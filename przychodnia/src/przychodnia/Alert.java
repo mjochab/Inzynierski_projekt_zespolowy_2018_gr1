@@ -31,7 +31,7 @@ public class Alert extends Application {
         launch(args);
     }
     @Override
-    public void start(Stage primaryStage) throws FileNotFoundException {
+    public void start(Stage primaryStage) {
         window = primaryStage;
         window.setTitle("Alert rejestracji");
        
