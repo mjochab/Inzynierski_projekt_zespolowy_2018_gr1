@@ -42,12 +42,10 @@ public class Alerty extends Application {
         
         Label blad = new Label("Nieprawidłowy dane logowania.\nPopraw błędy i spróbuj ponownie. 🔄");
         GridPane.setConstraints(blad, 1, 2);
-          //  InputStream znak = new BufferedInputStream(new FileInputStream("file://img//blad.png"));
-        //InputStream znak = Alert.class.getResourceAsStream("img/blad.png");
-       // Image image = new Image(znak);
-       // ImageView imageView = new ImageView(image);
-       // Label label = new Label("Błąd", imageView);
-       // GridPane.setConstraints(label, 1, 0);
+ InputStream znak = this.getClass().getClassLoader().getResourceAsStream("img/blad.png");       // Image image = new Image(znak);
+        ImageView imageView = new ImageView(image);
+        Label label = new Label("Błąd", imageView);
+        GridPane.setConstraints(label, 1, 0);
         
         //button
         Button button = new Button("     Ok     "); 
@@ -66,7 +64,7 @@ public class Alerty extends Application {
         grid.setVgap(8);
         grid.setHgap(10);
                 
-        grid.getChildren().addAll(/*label, */napis, blad, button);
+        grid.getChildren().addAll(label, napis, blad, button);
         
         scene = new Scene(grid, 350, 180);
         window.setScene(scene);
