@@ -6,28 +6,36 @@ package przychodnia;
  */
 public class Product {
 
+    private int id;
     private String name;
     private String surname;
     private String lek;
-    private double cena;
     private int ilosc;
 
     public Product(){
+        this.id = 0;
         this.name = "";
         this.surname = "";
         this.lek = "";
-        this.cena = 0;
         this.ilosc = 0;
     }
 
-    public Product(String name, String surname, String lek, double cena, int ilosc){
+    public Product(int id, String name, String surname, String lek, int ilosc){
+        this.id = id;
         this.name = name;
         this.surname = surname;
         this.lek = lek;
-        this.cena = cena;
         this.ilosc = ilosc;
     }
 
+    public int getID() {
+        return id;
+    }
+
+    public void setID(int id) {
+        this.id = id;
+    }
+    
     public String getName() {
         return name;
     }
@@ -52,14 +60,6 @@ public class Product {
         this.lek = lek;
     }
     
-    public double getCena() {
-        return cena;
-    }
-
-    public void setCena(double cena) {
-        this.cena = cena;
-    }
-
     public int getIlosc() {
         return ilosc;
     }
@@ -67,5 +67,4 @@ public class Product {
     public void setIlosc(int ilosc) {
         this.ilosc = ilosc;
     }
-
 }

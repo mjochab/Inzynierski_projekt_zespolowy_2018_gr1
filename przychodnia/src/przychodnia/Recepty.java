@@ -21,7 +21,7 @@ public class Recepty extends Application {
 
     Stage window;
     TableView<Product> table;
-    TextField nameInput, surnameInput, lekInput, cenaInput, iloscInput;
+    TextField idInput, nameInput, surnameInput, lekInput, iloscInput;
 
     public static void main(String[] args) {
         launch(args);
@@ -32,6 +32,11 @@ public class Recepty extends Application {
         window = primaryStage;
         window.setTitle("Recepty");
 
+        //ID column
+        TableColumn<Product, String> idColumn = new TableColumn<>("ID Recepty");
+        idColumn.setMinWidth(100);
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        
         //Name column
         TableColumn<Product, String> nameColumn = new TableColumn<>("Imię");
         nameColumn.setMinWidth(150);
@@ -47,15 +52,15 @@ public class Recepty extends Application {
         lekColumn.setMinWidth(150);
         lekColumn.setCellValueFactory(new PropertyValueFactory<>("lek"));
         
-        //Cena column
-        TableColumn<Product, Double> cenaColumn = new TableColumn<>("Cena");
-        cenaColumn.setMinWidth(100);
-        cenaColumn.setCellValueFactory(new PropertyValueFactory<>("cena"));
-
         //Ilosc column
         TableColumn<Product, String> iloscColumn = new TableColumn<>("Ilość");
         iloscColumn.setMinWidth(100);
         iloscColumn.setCellValueFactory(new PropertyValueFactory<>("ilosc"));
+
+        //Ilosc input
+        idInput = new TextField();
+        idInput.setPromptText("ID");
+        idInput.setMaxWidth(45);
 
         //Name input
         nameInput = new TextField();
@@ -72,13 +77,10 @@ public class Recepty extends Application {
         lekInput.setPromptText("Nazwa lek");
         lekInput.setMinWidth(100);
         
-        //Cena input
-        cenaInput = new TextField();
-        cenaInput.setPromptText("Cena");
-
         //Ilosc input
         iloscInput = new TextField();
         iloscInput.setPromptText("Ilość");
+        iloscInput.setMaxWidth(45);
 
         //Button
         Button addButton = new Button("Dodaj");
@@ -89,11 +91,11 @@ public class Recepty extends Application {
         HBox hBox = new HBox();
         hBox.setPadding(new Insets(10,10,10,10));
         hBox.setSpacing(10);
-        hBox.getChildren().addAll(nameInput, surnameInput, lekInput, cenaInput, iloscInput, addButton, deleteButton);
+        hBox.getChildren().addAll(idInput, nameInput, surnameInput, lekInput, iloscInput, addButton, deleteButton);
 
         table = new TableView<>();
         table.setItems(getProduct());
-        table.getColumns().addAll(nameColumn, surnameColumn, lekColumn, cenaColumn, iloscColumn);
+        table.getColumns().addAll(idColumn, nameColumn, surnameColumn, lekColumn, iloscColumn);
 
         VBox vBox = new VBox();
         vBox.getChildren().addAll(table, hBox);
@@ -106,16 +108,15 @@ public class Recepty extends Application {
     //Add button clicked
     public void addButtonClicked(){
         Product product = new Product();
+        product.setID(Integer.parseInt(idInput.getText()));
         product.setName(nameInput.getText());
         product.setSurname(surnameInput.getText());
         product.setLek(lekInput.getText());
-        product.setCena(Double.parseDouble(cenaInput.getText()));
         product.setIlosc(Integer.parseInt(iloscInput.getText()));
         table.getItems().add(product);
         nameInput.clear();
         surnameInput.clear();
         lekInput.clear();
-        cenaInput.clear();
         iloscInput.clear();
     }
 
@@ -131,9 +132,8 @@ public class Recepty extends Application {
     //Get all of the products
     public ObservableList<Product> getProduct(){
         ObservableList<Product> products = FXCollections.observableArrayList();
-        products.add(new Product("Jan", "Kowalski", "Njfofjo", 859.00, 78));
-        products.add(new Product("Jacek", "Nowak", "Tdbflaj", 432.00, 42));
+        products.add(new Product(1, "Jan", "Kowalski", "Njfofjo", 78));
+        products.add(new Product(2, "Jacek", "Nowak", "Tdbflaj", 42));
         return products;
     }
-
 }
