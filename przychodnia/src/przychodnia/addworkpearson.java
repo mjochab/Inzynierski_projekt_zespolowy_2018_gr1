@@ -26,6 +26,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import javax.swing.JOptionPane;
 import static javax.xml.bind.DatatypeConverter.parseString;
 
 /**
@@ -37,15 +38,13 @@ public class addworkpearson extends Application {
     //Ttabela i dane
     private ObservableList<ObservableList> data;
     private TableView tableview;
-    TextField hasloInput, IDInput, nameInput, sernameInput, functionInput, e_mailInput;
+    TextField hasloInput, IDInput, nameInput, sernameInput, functionInput, e_mailInput,loginInput;
     Stage window;
     Connection conn;
     PreparedStatement pst = null;
     ResultSet rs = null;
 
     //MAIN EXECUTOR
-   
-
     //CONNECTION DATABASE
     public void buildData() {
         Connection c;
@@ -99,8 +98,8 @@ public class addworkpearson extends Application {
         window.setTitle("dodawanie lekarzy");
         //TableView
         tableview = new TableView();
-        tableview.setMaxSize(500, 470);
-       buildData();
+        // tableview.setMaxSize(500, 470);
+        buildData();
 
         //Main Scene
         //Imie input
@@ -117,7 +116,7 @@ public class addworkpearson extends Application {
 
         //funkcja input
         functionInput = new TextField();
-        functionInput.setPromptText("Funkcja");
+        functionInput.setPromptText("Specjalnosc");
 
         //e_mail input
         e_mailInput = new TextField();
@@ -127,13 +126,16 @@ public class addworkpearson extends Application {
         hasloInput = new TextField();
         hasloInput.setPromptText("Hasło");
 
+        //login input
+        loginInput = new TextField();
+        loginInput.setPromptText("Login");
         //Button
         Button addButton = new Button("Dodaj");
         addButton.setOnAction(e -> addButtonClicked());
 
         Button deleteButton = new Button("Usuń");
         deleteButton.setOnAction(e -> deleteButtonClicked());
-       
+
         Button pdfButton = new Button("PDF");
         pdfButton.setOnAction(e -> {
             try {
@@ -142,20 +144,16 @@ public class addworkpearson extends Application {
                 Logger.getLogger(addworkpearson.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        
-        
-        
-        
+
         HBox hBox = new HBox();
         hBox.setPadding(new Insets(20, 20, 20, 20));
         hBox.setSpacing(10);
-        hBox.getChildren().addAll(IDInput, nameInput, sernameInput, functionInput, e_mailInput, hasloInput, addButton, deleteButton, pdfButton);
+        hBox.getChildren().addAll(IDInput, nameInput, sernameInput, functionInput, e_mailInput,loginInput, hasloInput, addButton, deleteButton, pdfButton);
 
         //Main Scene
         VBox vBox = new VBox();
-       vBox.setStyle("-fx-background-image:url('img/tapeta.jpg')");
+        vBox.setStyle("-fx-background-image:url('img/tapeta.jpg')");
         vBox.getChildren().addAll(tableview, hBox);
-
         Scene scene = new Scene(vBox);
         window.setScene(scene);
         window.show();
@@ -168,37 +166,41 @@ public class addworkpearson extends Application {
     }
 
     private void addButtonClicked() {
-   try {
-                pst = connect_baza.getConnection().prepareStatement("INSERT INTO lekarze(imie, nazwisko, specjalnosc, email, login, haslo) VALUES (?,?,?,?,?)");
-                pst.setString(1, parseString(nameInput.getText()));
-                pst.setString(2, parseString(sernameInput.getText()));
-                pst.setString(3, parseString(functionInput.getText()));
-                pst.setString(4, parseString(e_mailInput.getText()));
-                pst.setString(5, parseString(hasloInput.getText()));
+        try {
 
-                 pst.execute();
-              
+            String query = "INSERT INTO lekarze(imie, nazwisko, specjalnosc, email, login, haslo) VALUES (?,?,?,?,?,?)";
+            pst = connect_baza.getConnection().prepareStatement(query);
+            // pst.setString(1,IDInput.getText());
+            pst.setString(1, nameInput.getText());
+            pst.setString(2, sernameInput.getText());
+            pst.setString(3, functionInput.getText());
+            pst.setString(4, e_mailInput.getText());
+            pst.setString(5, loginInput.getText());
+            pst.setString(6, hasloInput.getText());
 
-            } catch (SQLException ex) {
-                Logger.getLogger(Logowaniepacjentow.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        
+            pst.execute();
+             
+
+
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(Logowaniepacjentow.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
-    
-
     private void deleteButtonClicked() {
-        tableview.getItems().removeAll(tableview.getSelectionModel().getSelectedItem());
+      tableview.getItems().removeAll(tableview.getSelectionModel().getSelectedItem());
+
 
     }
 
     private void pdfButtonClicked() throws FileNotFoundException {
         PrintWriter zapis = new PrintWriter("wynik.pdf");
-	  zapis.println(data);
-         // zapis.format(STYLESHEET_MODENA, data);
-          
-	  zapis.close();
+        zapis.println(data);
+        // zapis.format(STYLESHEET_MODENA, data);
+
+        zapis.close();
     }
 
 }
