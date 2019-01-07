@@ -1,7 +1,13 @@
 package przychodnia;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -20,88 +26,84 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import static javax.xml.bind.DatatypeConverter.parseString;
 
 /**
- * 
+ *
  * @author Narayan
  */
+public class addworkpearson extends Application {
 
-public class addworkpearson extends Application{
     //Ttabela i dane
     private ObservableList<ObservableList> data;
     private TableView tableview;
-    TextField hasloInput, IDInput,nameInput, sernameInput,  functionInput,e_mailInput;
+    TextField hasloInput, IDInput, nameInput, sernameInput, functionInput, e_mailInput;
     Stage window;
+    Connection conn;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+
     //MAIN EXECUTOR
-    public static void main(String[] args) {
-        launch(args);
-    }
+   
+
     //CONNECTION DATABASE
-    public void buildData(){
-          Connection c ;
-          data = FXCollections.observableArrayList();
-          try{
+    public void buildData() {
+        Connection c;
+        data = FXCollections.observableArrayList();
+        try {
             c = connect_baza.getConnection();
             //SQL FOR SELECTING ALL OF CUSTOMER
             String SQL = "SELECT * from lekarze";
             //ResultSet
             ResultSet rs = c.createStatement().executeQuery(SQL);
 
-          
-            for(int i=0 ; i<rs.getMetaData().getColumnCount(); i++){
+            for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
                 //We are using non property style for making dynamic table
-                final int j = i;                
-                TableColumn col = new TableColumn(rs.getMetaData().getColumnName(i+1));
-                col.setCellValueFactory(new Callback<CellDataFeatures<ObservableList,String>,ObservableValue<String>>(){                    
-                    public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param) {                                                                                              
-                        return new SimpleStringProperty(param.getValue().get(j).toString());                        
-                    }                    
+                final int j = i;
+                TableColumn col = new TableColumn(rs.getMetaData().getColumnName(i + 1));
+                col.setCellValueFactory(new Callback<CellDataFeatures<ObservableList, String>, ObservableValue<String>>() {
+                    public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param) {
+                        return new SimpleStringProperty(param.getValue().get(j).toString());
+                    }
                 });
 
-                tableview.getColumns().addAll(col); 
+                tableview.getColumns().addAll(col);
 
-                System.out.println("Column ["+i+"] ");
+                System.out.println("Column [" + i + "] ");
             }
 
-            
-            while(rs.next()){
+            while (rs.next()) {
                 //iteracja Row
                 ObservableList<String> row = FXCollections.observableArrayList();
-                for(int i=1 ; i<=rs.getMetaData().getColumnCount(); i++){
+                for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
                     //iteracja Column
                     row.add(rs.getString(i));
                 }
-                System.out.println("Row [1] added "+row );
+                System.out.println("Row [1] added " + row);
                 data.add(row);
-                
-                
-                
-                
 
             }
 
             //FINALLY ADDED TO TableView
             tableview.setItems(data);
 
-          }catch(Exception e){
-              e.printStackTrace();
-              System.out.println("Error on Building Data");             
-          }
-      }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error on Building Data");
+        }
+    }
 
-
-      @Override
-      public  void start(Stage primaryStage){
-              window = primaryStage;
-              window.setTitle("dodawanie lekarzy");
+    @Override
+    public void start(Stage primaryStage) {
+        window = primaryStage;
+        window.setTitle("dodawanie lekarzy");
         //TableView
         tableview = new TableView();
         tableview.setMaxSize(500, 470);
-        buildData();
+       buildData();
 
         //Main Scene
-
-         //Imie input
+        //Imie input
         IDInput = new TextField();
         IDInput.setPromptText("ID");
 
@@ -127,41 +129,76 @@ public class addworkpearson extends Application{
 
         //Button
         Button addButton = new Button("Dodaj");
-       addButton.setOnAction(e -> addButtonClicked());
+        addButton.setOnAction(e -> addButtonClicked());
 
         Button deleteButton = new Button("Usuń");
-       deleteButton.setOnAction(e -> deleteButtonClicked());;
+        deleteButton.setOnAction(e -> deleteButtonClicked());
+       
+        Button pdfButton = new Button("PDF");
+        pdfButton.setOnAction(e -> {
+            try {
+                pdfButtonClicked();
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(addworkpearson.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        
+        
+        
+        
         HBox hBox = new HBox();
         hBox.setPadding(new Insets(20, 20, 20, 20));
         hBox.setSpacing(10);
-         hBox.getChildren().addAll(IDInput, nameInput, sernameInput, functionInput, e_mailInput,hasloInput, addButton, deleteButton);
-       
-        
+        hBox.getChildren().addAll(IDInput, nameInput, sernameInput, functionInput, e_mailInput, hasloInput, addButton, deleteButton, pdfButton);
+
         //Main Scene
         VBox vBox = new VBox();
-        vBox.setStyle("-fx-background-color: #CCFFFF ");
-        vBox.getChildren().addAll(tableview,hBox); 
-        
-        Scene scene = new Scene(vBox);        
+       vBox.setStyle("-fx-background-image:url('img/tapeta.jpg')");
+        vBox.getChildren().addAll(tableview, hBox);
+
+        Scene scene = new Scene(vBox);
         window.setScene(scene);
         window.show();
-      
-      }
+
+    }
 
     private void NotkaButtonClicked() {
-notka noteczka = new notka();
-noteczka.start(window);
+        notka noteczka = new notka();
+        noteczka.start(window);
     }
 
     private void addButtonClicked() {
-tableview.getItems().addAll(tableview.getSelectionModel().getSelectedItem());
+   try {
+                pst = connect_baza.getConnection().prepareStatement("INSERT INTO lekarze(imie, nazwisko, specjalnosc, email, login, haslo) VALUES (?,?,?,?,?)");
+                pst.setString(1, parseString(nameInput.getText()));
+                pst.setString(2, parseString(sernameInput.getText()));
+                pst.setString(3, parseString(functionInput.getText()));
+                pst.setString(4, parseString(e_mailInput.getText()));
+                pst.setString(5, parseString(hasloInput.getText()));
+
+                 pst.execute();
+              
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Logowaniepacjentow.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
 
     }
+
+    
 
     private void deleteButtonClicked() {
         tableview.getItems().removeAll(tableview.getSelectionModel().getSelectedItem());
 
     }
-      
-      
+
+    private void pdfButtonClicked() throws FileNotFoundException {
+        PrintWriter zapis = new PrintWriter("wynik.pdf");
+	  zapis.println(data);
+         // zapis.format(STYLESHEET_MODENA, data);
+          
+	  zapis.close();
+    }
+
 }
