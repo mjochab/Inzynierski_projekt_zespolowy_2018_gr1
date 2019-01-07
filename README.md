@@ -2,7 +2,7 @@
 ## Dokumentacja do projektu „Przychodnia”
 **Komentarze do diagramu UML**
 
-![diagram przypadkow uzycia](file:///J:/studia%20rok%203/projekt%20ipz/imgdocumentacja/diagramaktywnosci.png)
+![diagram przypadkow uzycia](https://github.com/mjochab/Inzynierski_projekt_zespolowy_2018_gr1/blob/master/imgdocumentacja/diagramprzypadkowuzycia.png)
 
 Funkcjonalność  projektu : „przychodnia” polega na tym ze:
 Pacjent - może zarejestrować się , wybrać termin wizyty po poprzednim zalogowanie oraz odmówić wizytę. Po Pacjent ma dostęp do swojej historii przebytych chorób i notatki lekarza. 
@@ -10,13 +10,13 @@ Pielęgniarka tez morze zarejestrować pacjenta, odmówić wizytę pacjenta i ma
 Lekarz- może odmówić wizytę, dodać dyspozycję (godziny w których przyjmuję). Jak widać może także zarządzać receptami gdzie ma opcję dodać receptę po poprzednim wyborze pacjencie i zobaczeniu historii pacjenta 
 Administrator dodaje lekarza, przydziela odpowiednich lekarzy do specjalności oraz ma dostęp do wszystkich danych i do wszystkich aktorów (Pacjent, Lekarz, Pielęgniarka)
 
-![diagram sekwencji](file:///J:/studia%20rok%203/projekt%20ipz/imgdocumentacja/diagramsekwencji.png)
+![diagram sekwencji](https://github.com/mjochab/Inzynierski_projekt_zespolowy_2018_gr1/blob/master/imgdocumentacja/diagramsekwencji.png)
 
 Diagram przedstawia logowanie i rejestrowanie nowego użytkownika. Na samym początku po wpisaniu logina i hasła baza sparwdza czy dany uzytkownik jest bazie czy go nie ma. Jezli użytkownika nie ma bazie musi się zarejestrować by móc się zalogować 
 
-![diagram aktywnosci](file:///J:/studia%20rok%203/projekt%20ipz/imgdocumentacja/diagramaktywnosci.png)
+![diagram aktywnosci](https://github.com/mjochab/Inzynierski_projekt_zespolowy_2018_gr1/blob/master/imgdocumentacja/diagramaktywnosci.png)
 
-![diagram klas](file:///J:/studia%20rok%203/projekt%20ipz/imgdocumentacja/diagramaklas.png)
+![diagram klas](https://github.com/mjochab/Inzynierski_projekt_zespolowy_2018_gr1/blob/master/imgdocumentacja/diagramklas.png)
 
  **Cele i zakres systemu**
 
