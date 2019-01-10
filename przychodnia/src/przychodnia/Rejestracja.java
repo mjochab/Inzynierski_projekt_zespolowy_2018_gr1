@@ -116,11 +116,11 @@ Connection conn;
           @Override
                 public void handle(ActionEvent e) { 
          try {
-            pst = connect_baza.getConnection().prepareStatement("INSERT INTO pacjenci (imie, nazwisko, PESEL, adres, email, haslo) VALUES (?,?,?,?,?,?)");
-                pst.setString(1, parseString(nameInput.getText()));
-                pst.setString(2, parseString(nazwiskoInput.getText()));
-                pst.setString(3, parseString(nrPInput.getText()));
-             //   pst.setString(4 parseString,adresInput.getText());
+            pst = connect_baza.getConnection().prepareStatement("INSERT INTO pacjenci (imie, nazwisko, PESEL, plec, adres, telefon, email, haslo) VALUES (?,?,?,?,?,?,?,?,?)");
+                pst.setString(1,nameInput.getText());
+                pst.setString(2, nazwiskoInput.getText());
+                pst.setString(3,nrPInput.getText());
+                pst.setString(4, adresInput.getText());
                 pst.setString(5, mailInput.getText());
                 pst.setString(6, passInput.getText());
                 pst.execute();
