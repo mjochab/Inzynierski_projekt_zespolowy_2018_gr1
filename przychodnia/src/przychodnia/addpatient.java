@@ -22,6 +22,7 @@ import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -37,63 +38,37 @@ import static javax.xml.bind.DatatypeConverter.parseString;
 public class addpatient extends Application {
 
     //Ttabela i dane
-    private ObservableList<ObservableList> data;
-    private TableView tableview;
+        TableView <Pacjenci> tableview = new TableView<>();
     TextField  IDInput;
     Stage window;
     Connection conn;
     PreparedStatement pst = null;
     ResultSet rs = null;
+    final ObservableList<Pacjenci>  data = FXCollections.observableArrayList();
 
     //MAIN EXECUTOR
     //CONNECTION DATABASE
-    public void buildData() {
-        Connection c;
-        data = FXCollections.observableArrayList();
-        try {
-            c = connect_baza.getConnection();
-            //SQL FOR SELECTING ALL OF CUSTOMER
-            String SQL = "SELECT * from pacjenci";
-            //ResultSet
-            ResultSet rs = c.createStatement().executeQuery(SQL);
-
-            for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
-                //We are using non property style for making dynamic table
-                final int j = i;
-                TableColumn col = new TableColumn(rs.getMetaData().getColumnName(i + 1));
-                col.setCellValueFactory(new Callback<CellDataFeatures<ObservableList, String>, ObservableValue<String>>() {
-                    public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param) {
-                        return new SimpleStringProperty(param.getValue().get(j).toString());
-                    }
-                });
-
-                tableview.getColumns().addAll(col);
-
-                System.out.println("Column [" + i + "] ");
-            }
-
-            while (rs.next()) {
-                //iteracja Row
-                ObservableList<String> row = FXCollections.observableArrayList();
-                for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
-                    //iteracja Column
-                    row.add(rs.getString(i));
-              }
-                System.out.println("Row [1] added " + row);
-                data.add(row);
-
-            }
-
-            //FINALLY ADDED TO TableView
-            tableview.setItems(data);
-                
-               
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error on Building Data");
-        }
-    }
+   
+       public  void addData() {
+        try{
+   String query="select * from pacjenci";   
+            pst = connect_baza.getConnection().prepareStatement(query);
+  rs = pst.executeQuery();
+  
+  while(rs.next()){
+      data.add(new Pacjenci(
+              rs.getInt("id_pacjenta"),rs.getString("imie"), rs.getString("nazwisko"),rs.getInt("PESEL"), rs.getString("adres"), rs.getInt("telefon"), rs.getString("email"),rs.getString("haslo")));
+              
+           
+  }
+  tableview.setItems(data);
+  pst.close();
+  rs.close();
+  }
+         catch (SQLException ex) {
+            Logger.getLogger(Logowaniepacjentow.class.getName()).log(Level.SEVERE, null, ex);
+}  
+}
 
     @Override
     public void start(Stage primaryStage) {
@@ -102,7 +77,47 @@ public class addpatient extends Application {
         //TableView
         tableview = new TableView();
         // tableview.setMaxSize(500, 470);
-       buildData();
+       addData();
+ //id column
+        TableColumn<Pacjenci, Integer> IDColumn = new TableColumn<>("ID");
+        IDColumn.setMinWidth(50);
+        IDColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
+
+        //Imie column
+        TableColumn<Pacjenci, String> nameColumn = new TableColumn<>("Imie");
+        nameColumn.setMinWidth(200);
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+        //nazwisko column
+        TableColumn<Pacjenci, String> sernameColumn = new TableColumn<>("Nazwisko");
+        sernameColumn.setMinWidth(200);
+        sernameColumn.setCellValueFactory(new PropertyValueFactory<>("surname"));
+
+        //PESEL column
+        TableColumn<Pacjenci, Long> PESELColumn = new TableColumn<>("PESEL");
+        PESELColumn.setMinWidth(200);
+        PESELColumn.setCellValueFactory(new PropertyValueFactory<>("PESEL"));
+        
+        //adres column
+        TableColumn<Pacjenci, String> adresColumn = new TableColumn<>("adres");
+        adresColumn.setMinWidth(200);
+        adresColumn.setCellValueFactory(new PropertyValueFactory<>("adres"));
+        
+        //telefon column
+        TableColumn<Pacjenci, Integer> telefonColumn = new TableColumn<>("telefon");
+        telefonColumn.setMinWidth(200);
+        telefonColumn.setCellValueFactory(new PropertyValueFactory<>("telefon"));
+        
+        //e_mail column
+        TableColumn<Pacjenci, String> e_mailColumn = new TableColumn<>("e_mail");
+        e_mailColumn.setMinWidth(200);
+        e_mailColumn.setCellValueFactory(new PropertyValueFactory<>("e_mail"));
+      
+        //funkcja column
+        TableColumn<Pacjenci, String> hasloColumn = new TableColumn<>("haslo");
+        hasloColumn.setMinWidth(200);
+        hasloColumn.setCellValueFactory(new PropertyValueFactory<>("haslo"));
+               tableview.getColumns().addAll(IDColumn,nameColumn,sernameColumn,PESELColumn,adresColumn,telefonColumn,e_mailColumn,hasloColumn);
 
         //Main Scene
         //Imie input
@@ -135,7 +150,7 @@ public class addpatient extends Application {
         HBox hBox = new HBox();
         hBox.setPadding(new Insets(20, 20, 20, 20));
         hBox.setSpacing(10);
-        hBox.getChildren().addAll(IDInput, deleteButton, pdfButton, backButton);
+        hBox.getChildren().addAll(tableview,IDInput, deleteButton, pdfButton, backButton);
 
         //Main Scene
         VBox vBox = new VBox();
@@ -167,7 +182,8 @@ public class addpatient extends Application {
             pst.executeUpdate();
 
             tableview.setItems(data);
-
+addpatient adp = new addpatient();
+adp.start(window);
         } catch (SQLException ex) {
             Logger.getLogger(Logowaniepacjentow.class.getName()).log(Level.SEVERE, null, ex);
         }

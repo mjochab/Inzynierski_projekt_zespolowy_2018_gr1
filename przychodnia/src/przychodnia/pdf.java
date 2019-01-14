@@ -72,7 +72,7 @@ public class pdf {
             rs = ps.executeQuery();
             while(rs.next()){
                 
-                Paragraph para = new Paragraph(rs.getString("id_pacjenta")+" , "+ rs.getString("imie")+" , "+rs.getString("nazwisko")+" , "+rs.getString("PESEL")+" , "+rs.getString("adres")+" , "+rs.getString("email")+",  "+ rs.getString("haslo")+" , "+rs.getString("Ubezpieczenie"));
+                Paragraph para = new Paragraph(rs.getString("id_pacjenta")+" , "+ rs.getString("imie")+" , "+rs.getString("nazwisko")+" , "+rs.getString("PESEL")+" , "+rs.getString("adres")+" , "+rs.getInt("telefon")+","+rs.getString("email")+",  "+ rs.getString("haslo"));
                 document.add(para);
                 document.add(new Paragraph(" "));
             }

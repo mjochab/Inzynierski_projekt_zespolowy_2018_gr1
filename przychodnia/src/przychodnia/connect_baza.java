@@ -37,7 +37,22 @@ public class connect_baza {
         }
         return myConn;
     }
+        public  Connection getConnection1() {
+        try {
+            Class.forName(driverName);
+            try {
+                myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/przuchodnia", "root", "");
+            } catch (SQLException ex) {
+                System.out.println("Failed to create the database connection.");
+            }
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return myConn;
+    }
 }
+    
+
         
         
     

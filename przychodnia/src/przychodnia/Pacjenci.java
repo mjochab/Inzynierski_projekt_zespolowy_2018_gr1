@@ -5,6 +5,8 @@
  */
 package przychodnia;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.TableView;
 
 /**
@@ -12,42 +14,28 @@ import javafx.scene.control.TableView;
  * @author Krystian Tracz
  */
 public class Pacjenci {
-  
-    
-    
-    private int id_pacjenta;
-    private String name;
-    private String surname;    
-    private String PESEL;
-    private String e_mail;
-    private String haslo;
-    private String notatka;
 
+    private final SimpleIntegerProperty id_pacjenta;
+    private final SimpleStringProperty name;
+    private final SimpleStringProperty surname;
+    private final SimpleIntegerProperty PESEL;
+    private final SimpleStringProperty adres;
+    private final SimpleIntegerProperty telephon;
+    private final SimpleStringProperty e_mail;
+    private final SimpleStringProperty haslo;
 
-    public Pacjenci(){
-        this.id_pacjenta=0;
-        this.name = "";
-        this.surname ="";
-        this.PESEL="";
-        this.e_mail = "";
-        this.haslo = "";
-        this.notatka="";
+    public Pacjenci(int id, String names, String surname, int PESEL, String adres, int telephon, String e_mail, String haslo) {
+        this.id_pacjenta = new SimpleIntegerProperty(id);
+        this.name = new SimpleStringProperty(names);
+        this.surname = new SimpleStringProperty(surname);
+        this.PESEL = new SimpleIntegerProperty(PESEL);
+        this.adres = new SimpleStringProperty(adres);
+        this.telephon = new SimpleIntegerProperty(telephon);
+        this.e_mail = new SimpleStringProperty(e_mail);
+        this.haslo = new SimpleStringProperty(haslo);
     }
 
-    
-
-        
-
-    public  Pacjenci(int id_pacjenta, String name, String surname, String PESEL, String e_mail, String haslo, String notka){
-        this.id_pacjenta=id_pacjenta;
-        this.name = name;
-        this.surname = surname;
-        this.PESEL=PESEL;
-        this.e_mail = e_mail;
-        this.haslo= haslo;   
-        this.notatka=notatka;
-    }
-    
+    /*
     public Pacjenci(String name,String surname ){
       this.name=name;
       this.surname= surname;
@@ -58,54 +46,59 @@ public class Pacjenci {
       this.surname= surname;
       this.PESEL=null;
     }
+     */
+    public int getid_Pacjenta() {
+        return id_pacjenta.get();
+    }
 
-    public int getid_Pacjenta(){
-     return id_pacjenta;
-    }
-    public void setid_Pacjenta(int id_pacjenta){
-     this.id_pacjenta=id_pacjenta;   
-    }
-    
     public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
+        return name.get();
     }
 
     public String getSurname() {
-        return surname;
-    }
-    public void setSurname(String surname) {
-        this.surname = surname;
+        return surname.get();
     }
 
-     public String getPESEL() {
-        return PESEL;
+    public int getPESEL() {
+        return PESEL.get();
     }
-     public void setPESEL(String PESEL) {
-        this.PESEL = PESEL;
+
+    public String getAdres() {
+        return adres.get();
     }
-     
-   public String getE_mail() {
-        return e_mail;
+
+    public int getTelepon() {
+        return telephon.get();
     }
-    public void setE_mail(String e_mail) {
-        this.e_mail = e_mail;
+
+    public String getE_mail() {
+        return e_mail.get();
     }
-    
-     public String getHaslo() {
-        return haslo;
-    } 
-    public void setHaslo(String haslo) {
-        this.haslo = haslo;
+
+    public String getHaslo() {
+        return haslo.get();
     }
-    
-    public String getNotatka() {
-        return notatka;
-    } 
-    public void setNotatka(String notka) {
-        this.notatka = notka;
-    }
-     
+public void setId_Pacjeta(int id){
+  id_pacjenta.set(id);
+}
+
+public void setName(String names){
+  name.set(names);
+}
+public void setSurnmae(String surnames){
+  surname.set(surnames);
+}
+public void setPESEL(Integer pesel){
+  PESEL.set(pesel);
+}
+public void setTelephon(Integer telephons){
+  telephon.set(telephons);
+}
+public void setEmail(String email){
+  e_mail.set(email);
+}
+public void setHaslo(String haslo1){
+  haslo.set(haslo1);
+}
+
 }
