@@ -39,16 +39,16 @@ public class Wyborlogowania extends Application {
         window = primaryStage;
         window.setTitle("Logowanie");
 
-        /*MenuItem menuItem1 = new MenuItem("Lekarz");
+        MenuItem menuItem1 = new MenuItem("Lekarz");
         menuItem1.setOnAction(e -> LekarzSelect());
 
         MenuItem menuItem2 = new MenuItem("Pacjent");
         menuItem2.setOnAction(e -> PacjentSelect());
 
         MenuItem menuItem3 = new MenuItem("Administartor");
-        menuItem3.setOnAction(e -> AdminSelect());*/
+        menuItem3.setOnAction(e -> AdminSelect());
 
-        MenuButton menuButton = new MenuButton("             Zaloguj się jako            ", null/*, menuItem1, menuItem2, menuItem3*/);
+        MenuButton menuButton = new MenuButton("             Zaloguj się jako            ", null, menuItem1, menuItem2, menuItem3);
         GridPane.setConstraints(menuButton, 1, 3);
 
         //napis 
@@ -83,7 +83,7 @@ public class Wyborlogowania extends Application {
         System.out.println(comboBox.getValue());
     }
 
-    /*private void AdminSelect() {
+    private void AdminSelect() {
         Logowanieadmina logad = new Logowanieadmina();
         logad.start(window);
     }
@@ -96,6 +96,6 @@ public class Wyborlogowania extends Application {
     private void LekarzSelect() {
         Logowanielekarza loglek = new Logowanielekarza();
         loglek.start(window);
-    }*/
+    }
 
 }
