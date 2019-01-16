@@ -1,5 +1,6 @@
 package przychodnia;
 
+import java.io.IOException;
 import static java.lang.Integer.parseInt;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -80,8 +81,12 @@ public class Logowaniepacjentow extends Application {
 
                 rs = pst.executeQuery();
                 if (rs.next()) {
-                    wizyty wiz = new wizyty();
-                    wiz.start(primaryStage);
+                  CalendarApp callA = new CalendarApp();
+                    try {
+                        callA.start(primaryStage);
+                    } catch (IOException ex) {
+                        Logger.getLogger(Logowaniepacjentow.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 } else {
                     Alerty alt = new Alerty();
                     alt.start(window);
