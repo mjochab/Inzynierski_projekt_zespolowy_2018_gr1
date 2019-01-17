@@ -35,6 +35,7 @@ Raporty które powinny być udostępnione to np.
 **Pacjent** nie może zobaczyć danych lekarza ponieważ tych danych nie wolno udostępniać osobą trzecim. Pacjenci mają dostęp tylko do swoich danych.    
 **Administrator** ma dostęp do wszystkich danych pamiętając o ochronie danych użytkownika(RODO).    
 **Pielęgniarka** ma dostęp do danych pacjenta natomiast nie ma danych na temat lekarzy prócz danych np. imię i nazwisko. Ma dostęp do danych pacjenta w celu wydania recepty.    - plan na przyszłość
+
 **Lekarz** ma dane tylko na swój temat, ma dostęp do danych pacjenta w celu wypisywania recept i innych zleceń(skierowania, zwolnienia itp.)
 
 **Określenie wymagań**    
