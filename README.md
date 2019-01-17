@@ -43,7 +43,7 @@ a) funkcjonalne
 Rodzie użytkowników:    
 -pacjent    
 -lekarz    
--pielęgniarka    - plan na przyszłość
+-pielęgniarka( plan na przyszłość)
 -administrator (admin)
 
 System zewnętrzny nie wykorzystywany ponieważ przychodnia korzysta z własnej bazy danych. Przepisy prawne RODO.
