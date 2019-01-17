@@ -45,6 +45,7 @@ Rodzie użytkowników:
 -pacjent    
 -lekarz    
 -pielęgniarka( plan na przyszłość)
+
 -administrator (admin)
 
 System zewnętrzny nie wykorzystywany ponieważ przychodnia korzysta z własnej bazy danych. Przepisy prawne RODO.
@@ -52,6 +53,7 @@ Język wykorzystywany do tworzenia projekty to JavaFx, Java Swing , natomiast to
 I.	Tabela Pacjenci    
 II.	Tabela Lekarze    
 III.	Tabela Pielęgniarki    - plan na przyszłość
+
 IV.	Tabela Historia choroby
 
 Formularze zawarte w projekcie to formularz rejestracji, logowanie , dodawanie pracownika, wybór pacjenta, dodawanie recept, oraz wprowadzanie historii pacjenta
